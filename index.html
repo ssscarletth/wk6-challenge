@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="buttonPrev">Previous fortune</button>
+	<button id="buttonNext">Next fortune</button>
+	<button id="buttonRandom">Random fortune</button>
+	<div id="output"></div>
+
+	<script>
+		// Store all of our fortunes as HTML strings in an array
+		let fortunes = [
+			"You will have a <span style='font-size: 40px; color: blue;'>GLORIOUS</span> day.",
+			"You will consume much <span style='letter-spacing: 1em; color: orange;'>cheese</span>.",
+			"You are one day closer to <span style='color: #F08D39; font-size: 25px;letter-spacing: 0.1em;'>summer☀️</span>.",
+			"A fresh start is <span style='color: green; font-size: 20px; letter-spacing: -0.1em;'>closer</span>&nbsp;than you think.",
+			"Today the sky is so <span style='color: #03AED2; font-size: 24px; font-weight: bold;'>blue</span> and so clear.",
+			"Raise a glass <span style='background-color: white;'>🍻</span> and enjoy time with your friends.",
+			"🍓The strawberries🍓 you bought today are actually <span style='color: #CD2C58; font-size: 25px; font-weight: bold; letter-spacing: 0.1em;'>REAL</span> strawberries.",
+			"You taste an incredibly delicious <span style='color: #F7C85C; font-size: 28px; font-weight: bold;'>c</span><span style='color: #A3D78A; font-size: 28px; font-weight: bold;'>a</span><span style='color: #B6771D; font-size: 28px; font-weight: bold;'>k</span><span style='color: #73C8D2; font-size: 28px; font-weight: bold;'>e</span> today.",
+			"Stay in <span style='color: #6FA4AF;font-size: 24px;letter-spacing: -0.05em;'>bed</span> on a rainy day with nothing to do.",
+			"Finally get something you've been wanting and it's on <span style='color: #BF092F;font-size: 24px;letter-spacing: 0.05em;'>SALE</span>!",
+			"🎵Your favorite <span style='color: #5C3E94; font-size: 22px; letter-spacing: 0.05em;'>song</span> comes on at the perfect moment.🎵",
+			"Getting ready to go out, then realizing <span style='font-size: 24px; font-weight: bold; font-style: italic;'>you don't have to work today!</span>",
+		]
+
+		// Variable to track our current index (i.e. fortune) in the array
+		let index = 0;
+
+		// Function to update the displayed fortune
+		function updateFortune() {
+			let output = document.querySelector('#output');
+			output.innerHTML = fortunes[index];
+			console.log(index); // to help with debugging!
+		}
+
+		// Run the function immediately to show the first fortune
+		updateFortune();
+
+		// Target all of our elements
+		let buttonPrev = document.querySelector("#buttonPrev");
+		let buttonNext = document.querySelector("#buttonNext");
+		let buttonRandom = document.querySelector("#buttonRandom");
+
+		// Add event listeners to all of our elements (like inline event handlers)
+		buttonPrev.addEventListener('click', prevFortune);
+		buttonNext.addEventListener('click', nextFortune);
+		buttonRandom.addEventListener('click', randomFortune);
+
+		// ————————————————————————————
+		// FUNCTIONS FOR YOU TO FINISH!
+
+		function nextFortune() {
+			index = index + 1; // same thing as writing index++;
+			if (index == fortunes.length) {
+				index = 0;
+			}
+            
+			updateFortune();
+		}
+
+		function prevFortune() {
+			index = index -1;
+            if (index < 0) {
+                index = fortunes.length - 1;
+            }
+
+			updateFortune();
+		}
+
+		function randomFortune() {
+            index = randomArrayIndex(fortunes);
+
+			updateFortune();
+		}
+
+		// Helper function to get a random item from an array
+		function randomArrayIndex(array) {
+			let randomIndex = Math.floor(Math.random()*array.length);
+			return randomIndex
+		}
+
+
+	</script>
+</body>
+</html>
